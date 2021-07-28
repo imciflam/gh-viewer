@@ -1,2 +1,2 @@
 # gh-viewer
-popular github repos viewer using recoiljs
+a popular github repos viewer made with react+recoiljs
