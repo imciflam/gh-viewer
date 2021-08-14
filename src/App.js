@@ -1,24 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import { atom, useRecoilState } from "recoil";
+import React, { useEffect } from "react";
+
+const reposState = atom({
+  key: "repos",
+  default: [],
+});
 
 function App() {
+  const [repos, setRepos] = useRecoilState(reposState);
+
+  useEffect(() => {
+    const getRepos = async () => {
+      const url = `https://gtrend.yapie.me/repositories?since=monthly&spoken_language_code=en`;
+      const resp = await fetch(url);
+      const body = await resp.json();
+      setRepos(body);
+    };
+
+    getRepos();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {repos?.map((repo) => (
+        <div key={repo.url}>
+          <a href={repo.url}>
+            {repo.author}/{repo.name}
+          </a>
+        </div>
+      ))}
+    </>
   );
 }
 
