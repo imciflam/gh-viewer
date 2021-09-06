@@ -14,7 +14,11 @@ function App() {
       const url = `https://gtrend.yapie.me/repositories?since=${view}&spoken_language_code=en`;
       const resp = await fetch(url);
       const body = await resp.json();
-      setRepos(body);
+      setRepos(
+        Object.assign({}, repos, {
+          [view]: body
+        })
+      );
     };
 
     getRepos();
@@ -23,17 +27,23 @@ function App() {
   return (
     <>
       <Menu />
-      {repos?.map(repo => (
-        <div key={repo.url}>
-          <a href={repo.url}>
-            {repo.author}/{repo.name}
-          </a>
-          <div>{repo.description}</div>
-          <div>
-            {repo.stars} stars / {repo.forks} forks
-          </div>
-        </div>
-      ))}
+      {repos[view] ? (
+        <ul>
+          {repos[view].map(repo => (
+            <div key={repo.url}>
+              <a href={repo.url}>
+                {repo.author}/{repo.name}
+              </a>
+              <div>{repo.description}</div>
+              <div>
+                {repo.stars} stars / {repo.forks} forks
+              </div>
+            </div>
+          ))}
+        </ul>
+      ) : (
+        <span>No repos found</span>
+      )}
     </>
   );
 }
