@@ -2,23 +2,15 @@ import logo from "./logo.svg";
 import "./App.css";
 import { atom, useRecoilState, useRecoilValue } from "recoil";
 import React, { useEffect } from "react";
-
-const reposState = atom({
-  key: "repos",
-  default: []
-});
-
-const reposState = atom({
-  key: "view",
-  default: "monthly"
-});
+import { repos as reposAtom, view as viewAtom } from "./atoms";
 
 function App() {
-  const [repos, setRepos] = useRecoilState(reposState);
+  const [repos, setRepos] = useRecoilState(reposAtom);
+  const view = useRecoilValue(viewAtom);
 
   useEffect(() => {
     const getRepos = async () => {
-      const url = `https://gtrend.yapie.me/repositories?since=${useRecoilValue}&spoken_language_code=en`;
+      const url = `https://gtrend.yapie.me/repositories?since=${view}&spoken_language_code=en`;
       const resp = await fetch(url);
       const body = await resp.json();
       setRepos(body);
