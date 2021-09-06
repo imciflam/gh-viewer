@@ -3,6 +3,7 @@ import "./App.css";
 import { atom, useRecoilState, useRecoilValue } from "recoil";
 import React, { useEffect } from "react";
 import { repos as reposAtom, view as viewAtom } from "./atoms";
+import Menu from "./Menu";
 
 function App() {
   const [repos, setRepos] = useRecoilState(reposAtom);
@@ -21,6 +22,7 @@ function App() {
 
   return (
     <>
+      <Menu />
       {repos?.map(repo => (
         <div key={repo.url}>
           <a href={repo.url}>
