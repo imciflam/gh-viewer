@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import { atom, useRecoilState, useRecoilValue } from "recoil";
 import React, { useEffect } from "react";
