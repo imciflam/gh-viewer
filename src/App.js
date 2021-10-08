@@ -25,6 +25,7 @@ function App() {
 
   return (
     <>
+      {/*no need to pass something to menu*/}
       <Menu />
       {repos[view] ? (
         <ul>
