@@ -7,14 +7,14 @@ export default () => {
   const [view, setView] = useRecoilState(viewAtom);
   return (
     <nav className="menu">
-      {viewOptions.map(v => (
+      {viewOptions.map(viewOption => (
         <a
-          className={`menu-item ${view === v ? "text-bold" : ""}`}
+          className={`menu-item ${view === viewOption ? "text-bold" : ""}`}
           href="#"
-          onClick={() => setView(v)}
-          key={v}
+          onClick={() => setView(viewOption)}
+          key={viewOption}
         >
-          Trending {v}
+          Trending {viewOption}
         </a>
       ))}
     </nav>

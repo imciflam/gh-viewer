@@ -1,5 +1,5 @@
 import "./App.css";
-import { atom, useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import React, { useEffect } from "react";
 import { repos as reposAtom, view as viewAtom } from "./atoms";
 import Menu from "./Menu";
