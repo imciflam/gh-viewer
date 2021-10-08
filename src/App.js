@@ -8,8 +8,13 @@ import ReposContainer from "./Repos/index";
 function App() {
   return (
     <>
-      {/*no need to pass something to menu*/}
-      <Menu /> <ReposContainer />
+      <div className="container-lg my-4">
+        {/*no need to pass something down*/}
+        <Menu />
+        <div className="Box">
+          <ReposContainer />
+        </div>
+      </div>
     </>
   );
 }
