@@ -1,6 +1,7 @@
 import { useRecoilState, useRecoilValue } from "recoil";
 import React, { useEffect } from "react";
 import { repos as reposAtom, view as viewAtom } from "../atoms";
+import RepoView from "../Repo/index";
 
 export const ReposContainer = () => {
   const [repos, setRepos] = useRecoilState(reposAtom);
@@ -25,15 +26,7 @@ export const ReposContainer = () => {
   return repos[view] ? (
     <ul>
       {repos[view].map(repo => (
-        <div key={repo.url}>
-          <a href={repo.url}>
-            {repo.author}/{repo.name}
-          </a>
-          <div>{repo.description}</div>
-          <div>
-            {repo.stars} stars / {repo.forks} forks
-          </div>
-        </div>
+        <RepoView repo={repo} />
       ))}
     </ul>
   ) : (
