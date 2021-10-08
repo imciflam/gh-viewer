@@ -13,6 +13,7 @@ function App() {
       const url = `https://gtrend.yapie.me/repositories?since=${view}&spoken_language_code=en`;
       const resp = await fetch(url);
       const body = await resp.json();
+      // cacheing previous requests through objects
       setRepos(
         Object.assign({}, repos, {
           [view]: body
